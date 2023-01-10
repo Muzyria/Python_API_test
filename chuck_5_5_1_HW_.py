@@ -34,12 +34,12 @@ class Test_new_joke:
 
 
 run_category_joke = Test_new_joke()
-[print(f'{num} : {item}', sep="\n") for num, item in enumerate(run_category_joke.list_category, 1)]
+[print(f'{num} : {item}', sep="\n") for num, item in enumerate(run_category_joke.list_category, 1)]  # печатаем названия категорий
 
 while True:
     select_category = input('Введите название категории шутки ')
-    if run_category_joke.check_category(select_category):
-        run_category_joke.ntest_run_categories_joke(select_category)
+    if run_category_joke.check_category(select_category):  # проверяем что категория есть в списке категорий
+        run_category_joke.ntest_run_categories_joke(select_category)  # отпрвляем запрос на шутку
         break
     print('Ткакой категории нет в списке !')
     continue
