@@ -7,7 +7,7 @@ class Test_new_joke:
     def __init__(self):
         self.list_category = requests.get("https://api.chucknorris.io/jokes/categories").json()
 
-    def ntest_create_new_random_categories_joke(self):
+    def ntest_run_categories_joke(self):
         """Создание случайной шутки на определенную тему"""
         for category in self.list_category:
             url = f"https://api.chucknorris.io/jokes/random?category={category}"
@@ -26,14 +26,7 @@ class Test_new_joke:
             print(check_info)
             assert check_info == [category]
             print("Категория верна")
-        # check_info_value = check.get("value")
-        # print(check_info_value)
-        # name = "Chuck"
-        # if name in check_info_value:
-        #     print("Chuck присутствует")
-        # else:
-        #     print("Сhuck отсутствует")
 
 
 run_category_joke = Test_new_joke()
-run_category_joke.ntest_create_new_random_categories_joke()
+run_category_joke.ntest_run_categories_joke()
