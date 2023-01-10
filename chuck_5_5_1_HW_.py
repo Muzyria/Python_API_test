@@ -41,5 +41,5 @@ while True:
     if run_category_joke.check_category(select_category):  # проверяем что категория есть в списке категорий
         run_category_joke.ntest_run_categories_joke(select_category)  # отпрвляем запрос на шутку
         break
-    print('Ткакой категории нет в списке !')
+    print('Такой категории нет в списке !')
     continue
