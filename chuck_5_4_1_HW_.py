@@ -5,11 +5,11 @@ class Test_new_joke:
     """Создание новой шутки"""
 
     def __init__(self):
-        self.list_category = requests.get("https://api.chucknorris.io/jokes/categories").json()
+        self.list_category = requests.get("https://api.chucknorris.io/jokes/categories").json()  # список категорий
 
     def ntest_run_categories_joke(self):
         """Создание случайной шутки на определенную тему"""
-        for num, category in enumerate(self.list_category, 1):
+        for num, category in enumerate(self.list_category, 1):  # Перебираем в цикле список категорий
             print(f'Шутка № {num} в категории {category}')
             url = f"https://api.chucknorris.io/jokes/random?category={category}"
             print(url)
