@@ -9,7 +9,8 @@ class Test_new_joke:
 
     def ntest_run_categories_joke(self):
         """Создание случайной шутки на определенную тему"""
-        for category in self.list_category:
+        for num, category in enumerate(self.list_category, 1):
+            print(f'Шутка № {num} в категории {category}')
             url = f"https://api.chucknorris.io/jokes/random?category={category}"
             print(url)
             result = requests.get(url)
@@ -26,6 +27,7 @@ class Test_new_joke:
             print(check_info)
             assert check_info == [category]
             print("Категория верна")
+            print()
 
 
 run_category_joke = Test_new_joke()
