@@ -17,7 +17,7 @@ class Test_new_joke:
             print("Статус код : " + str(result.status_code))
             assert 200 == result.status_code
             if result.status_code == 200:
-                print(f"Успешно, Мы получили новую шутку в категории {category}")
+                print(f"Успешно, Мы получили новую шутку № {num} в категории {category}")
             else:
                 print("Провал. Запрос не верный")
             result.encoding = 'utf-8'
