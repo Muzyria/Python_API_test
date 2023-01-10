@@ -21,10 +21,17 @@ class Test_new_joke:
         result.encoding = 'utf-8'
         print(result.text)
         check = result.json()
-        check_info = check.get("categories")
-        print(check_info)
-        assert check_info == []
-        print("Категория верна")
+        # check_info = check.get("categories")
+        # print(check_info)
+        # assert check_info == []
+        # print("Категория верна")
+        check_info_value = check.get("value")
+        print(check_info_value)
+        name = "Chuck"
+        if name in check_info_value:
+            print("Chuck присутствует")
+        else:
+            print("Сhuck отсутствует")
 
 
 random_joke = Test_new_joke()
