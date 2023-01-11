@@ -26,7 +26,6 @@ class Test_new_location:
                                          }
 
         result_post = requests.post(post_url, json=json_for_create_new_location)
-        # print(result_post.text)
         [print(k) for k in result_post.text.split(',')]
 
         assert 200 == result_post.status_code
@@ -43,7 +42,6 @@ class Test_new_location:
 
     def check_new_location(self, num, place_id):
         """Проверка создания новой локации метод GET"""
-
         print(f'Проверка №{num} для {place_id}')
         get_resource = "/maps/api/place/get/json"
         get_url = self.base_url + get_resource + self.key + "&place_id=" + place_id
