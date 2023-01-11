@@ -30,6 +30,15 @@ class Test_new_location:
         result_post = requests.post(post_url, json=json_for_create_new_location)
         [print(k) for k in result_post.text.split(',')]
 
+        assert 200 == result_post.status_code
+        print("Успешно!!! Создана новая локация")
+
+        check_post = result_post.json()
+        check_info_post = check_post.get("status")
+        print(f'Статус код ответа {check_info_post}')
+        assert check_info_post == "OK"
+        print("Статус код ответа верен")
+
 
 new_place = Test_new_location()
 new_place.ntest_create_new_location()
