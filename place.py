@@ -75,6 +75,14 @@ class Test_new_location:
         assert check_put_info == "Address successfully updated"
         print("Сообщение верно")
 
+        """Проверка изменения новой локации"""
+        result_get = requests.get(get_url)
+        print(result_get.text)
+        # [print(k) for k in result_get.text.split(',')]
+        print(f'Статус код ответа : {result_get.status_code}')
+        assert 200 == result_get.status_code
+        print("Успешно!!! Проверка изменения новой локации")
+
 
 new_place = Test_new_location()
 new_place.ntest_create_new_location()
