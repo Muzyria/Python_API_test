@@ -43,6 +43,10 @@ class Test_new_location:
 
         """Проверка создания новой локации"""
 
+        get_resource = "/maps/api/place/get/json"
+        # "https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=6b3f1a82e47f018089e387fc85a66bf5"
+        get_url = base_url + get_resource + key + "&place_id=" + place_id
+
 
 new_place = Test_new_location()
 new_place.ntest_create_new_location()
