@@ -8,7 +8,7 @@ class Test_new_location:
         self.base_url = "https://rahulshettyacademy.com"  # базовая url
         self.key = "?key=qaclick123"  # Параметр для всех запросов
 
-    def ntest_create_new_location(self):
+    def create_new_location(self):
         """Создание новой локации"""
 
         post_resource = "/maps/api/place/add/json"  # Ресурс метода пост
@@ -59,8 +59,15 @@ class Test_new_location:
     def write_place_id_to_file(self):
         """Создаем файл и записываем в него 5 шт place_id"""
         with open("list_place_id.txt", "w", encoding='utf-8') as file:
-            [file.write(self.ntest_create_new_location() + "\n") for _ in range(5)]
+            [file.write(self.create_new_location() + "\n") for _ in range(5)]
+
+
+    def read_place_id_from_file(self):
+        """Чтение place_id из файла"""
+        with open("list_place_id.txt", "r", encoding='utf-8') as file:
+            print([line for line in file.read().split("\n")])
 
 
 new_place = Test_new_location()
 new_place.write_place_id_to_file()
+new_place.read_place_id_from_file()
