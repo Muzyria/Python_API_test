@@ -9,7 +9,7 @@ class Test_new_location:
         self.key = "?key=qaclick123"  # Параметр для всех запросов
 
     def create_new_location(self):
-        """Создание новой локации"""
+        """Создание новой локации метод POST"""
 
         post_resource = "/maps/api/place/add/json"  # Ресурс метода пост
         post_url = self.base_url + post_resource + self.key
@@ -40,32 +40,26 @@ class Test_new_location:
         print(f'place_id ответа : {place_id}')
         return place_id
 
-
     def check_new_location(self, place_id):
-        """Проверка создания новой локации"""
-
+        """Проверка создания новой локации метод GET"""
         get_resource = "/maps/api/place/get/json"
         get_url = self.base_url + get_resource + self.key + "&place_id=" + place_id
         print(get_url)
         result_get = requests.get(get_url)
         print(result_get.text)
-        # [print(k) for k in result_get.text.split(',')]
-
         print(f'Статус код ответа : {result_get.status_code}')
         assert 200 == result_get.status_code
         print("Успешно!!! Проверка создания новой локации")
 
-
     def write_place_id_to_file(self):
-        """Создаем файл и записываем в него 5 шт place_id"""
+        """Создаем файл и записываем в него 5шт place_id"""
         with open("list_place_id.txt", "w", encoding='utf-8') as file:
             [file.write(self.create_new_location() + "\n") for _ in range(5)]
 
-
     def read_place_id_from_file(self):
-        """Чтение place_id из файла"""
+        """Чтение place_id из файла и вызов метода GET"""
         with open("list_place_id.txt", "r", encoding='utf-8') as file:
-            print([line for line in file.read().split("\n")])
+            [self.check_new_location(line) for line in file.read().split("\n") if line != '']
 
 
 new_place = Test_new_location()
