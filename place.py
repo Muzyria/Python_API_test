@@ -35,9 +35,13 @@ class Test_new_location:
 
         check_post = result_post.json()
         check_info_post = check_post.get("status")
-        print(f'Статус код ответа {check_info_post}')
+        print(f'Статус код ответа : {check_info_post}')
         assert check_info_post == "OK"
         print("Статус код ответа верен")
+        place_id = check_post.get("place_id")
+        print(f'place_id ответа : {place_id}')
+
+        """Проверка создания новой локации"""
 
 
 new_place = Test_new_location()
