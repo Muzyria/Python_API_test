@@ -83,6 +83,13 @@ class Test_new_location:
         assert 200 == result_get.status_code
         print("Успешно!!! Проверка изменения новой локации")
 
+        check_address = result_get.json()
+        check_address_info = check_address.get("address")
+        print(f'Сообщение : {check_address_info}')
+        # print(json_for_update_new_location["address"])
+        assert check_address_info == json_for_update_new_location["address"]
+        print("Адрес верный")
+
 
 new_place = Test_new_location()
 new_place.ntest_create_new_location()
