@@ -28,6 +28,7 @@ class Test_new_location:
                                          }
 
         result_post = requests.post(post_url, json=json_for_create_new_location)
+        # print(result_post.text)
         [print(k) for k in result_post.text.split(',')]
 
         assert 200 == result_post.status_code
@@ -47,14 +48,27 @@ class Test_new_location:
         get_url = base_url + get_resource + key + "&place_id=" + place_id
         print(get_url)
         result_get = requests.get(get_url)
-        # print(result_get.text)
-        [print(k) for k in result_get.text.split(',')]
+        print(result_get.text)
+        # [print(k) for k in result_get.text.split(',')]
 
         print(f'Статус код ответа : {result_get.status_code}')
         assert 200 == result_get.status_code
         print("Успешно!!! Проверка создания новой локации")
 
-
+        """Изменение новой локации"""
+        put_resource = "/maps/api/place/update/json"
+        put_url = base_url + put_resource + key
+        print(put_url)
+        json_for_update_new_location = {
+                                        "place_id": place_id,
+                                        "address": "100 Lenina street, RU",
+                                        "key": "qaclick123"
+                                        }
+        result_put = requests.put(put_url, json=json_for_update_new_location)
+        print(result_put.text)
+        print(f'Статус код ответа : {result_put.status_code}')
+        assert 200 == result_put.status_code
+        print("Успешно!!! Изменение новой локации прошло успешно")
 
 
 new_place = Test_new_location()
