@@ -9,9 +9,12 @@ class Test_new_location:
 
         base_url = "https://rahulshettyacademy.com"  # базовая url
         key = "?key=qaclick123"  # Параметр для всех запросов
+
+        """Создание новой локации"""
         post_resource = "/maps/api/place/add/json"  # Ресурс метода пост
 
         post_url = base_url + post_resource + key
+        print(post_url)
 
         json_for_create_new_location = {
                                         "location": {"lat": -38.383494, "lng": 33.427362},
@@ -23,3 +26,10 @@ class Test_new_location:
                                         "website": "http://google.com",
                                         "language": "French-IN"
                                          }
+
+        result_post = requests.post(post_url, json=json_for_create_new_location)
+        [print(k) for k in result_post.text.split(',')]
+
+
+new_place = Test_new_location()
+new_place.ntest_create_new_location()
