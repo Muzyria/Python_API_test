@@ -69,6 +69,11 @@ class Test_new_location:
         print(f'Статус код ответа : {result_put.status_code}')
         assert 200 == result_put.status_code
         print("Успешно!!! Изменение новой локации прошло успешно")
+        check_put = result_put.json()
+        check_put_info = check_put.get("msg")
+        print(f'Сообщение : {check_put_info}')
+        assert check_put_info == "Address successfully updated"
+        print("Сообщение верно")
 
 
 new_place = Test_new_location()
