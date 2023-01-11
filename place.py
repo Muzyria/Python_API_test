@@ -90,6 +90,22 @@ class Test_new_location:
         assert check_address_info == json_for_update_new_location["address"]
         print("Адрес верный")
 
+        """Удаление новой локации"""
+        delete_resource = "/maps/api/place/delete/json"
+        delete_url = base_url + delete_resource + key
+        print(delete_url)
+        json_for_delete_new_location = {"place_id": place_id}
+        result_delete = requests.put(delete_url, json=json_for_delete_new_location)
+        print(result_delete.text)
+        print(f'Статус код ответа : {result_put.status_code}')
+        assert 200 == result_delete.status_code
+        print("Успешно!!! Удаление новой локации прошло успешно")
+        check_delete = result_delete.json()
+        check_delete_info = check_delete.get("status")
+        print(f'Сообщение : {check_delete_info}')
+        assert check_delete_info == "OK"
+        print("Сообщение верно")
+
 
 new_place = Test_new_location()
 new_place.ntest_create_new_location()
