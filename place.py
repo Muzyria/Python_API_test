@@ -120,6 +120,8 @@ class Test_new_location:
         assert check_msg_info == "Get operation failed, looks like place_id  doesn't exists"
         print("Сообщение верно")
 
+        print("Тестировани Test_new_location завершино успешно")
+
 
 new_place = Test_new_location()
 new_place.ntest_create_new_location()
