@@ -44,8 +44,17 @@ class Test_new_location:
         """Проверка создания новой локации"""
 
         get_resource = "/maps/api/place/get/json"
-        # "https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=6b3f1a82e47f018089e387fc85a66bf5"
         get_url = base_url + get_resource + key + "&place_id=" + place_id
+        print(get_url)
+        result_get = requests.get(get_url)
+        # print(result_get.text)
+        [print(k) for k in result_get.text.split(',')]
+
+        print(f'Статус код ответа : {result_get.status_code}')
+        assert 200 == result_get.status_code
+        print("Успешно!!! Проверка создания новой локации")
+
+
 
 
 new_place = Test_new_location()
