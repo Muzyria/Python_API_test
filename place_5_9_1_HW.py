@@ -38,10 +38,13 @@ class Test_new_location:
         print("Статус код ответа верен")
         place_id = check_post.get("place_id")
         print(f'place_id ответа : {place_id}')
+        print()
         return place_id
 
-    def check_new_location(self, place_id):
+    def check_new_location(self, num, place_id):
         """Проверка создания новой локации метод GET"""
+
+        print(f'Проверка №{num} для {place_id}')
         get_resource = "/maps/api/place/get/json"
         get_url = self.base_url + get_resource + self.key + "&place_id=" + place_id
         print(get_url)
@@ -49,7 +52,8 @@ class Test_new_location:
         print(result_get.text)
         print(f'Статус код ответа : {result_get.status_code}')
         assert 200 == result_get.status_code
-        print("Успешно!!! Проверка создания новой локации")
+        print(f"Успешно!!! Проверка создания новой локации №{num} для {place_id}")
+        print()
 
     def write_place_id_to_file(self):
         """Создаем файл и записываем в него 5шт place_id"""
@@ -59,7 +63,7 @@ class Test_new_location:
     def read_place_id_from_file(self):
         """Чтение place_id из файла и вызов метода GET"""
         with open("list_place_id.txt", "r", encoding='utf-8') as file:
-            [self.check_new_location(line) for line in file.read().split("\n") if line != '']
+            [self.check_new_location(num, line) for num, line in enumerate(file.read().split("\n"), 1) if line != '']
 
 
 new_place = Test_new_location()
