@@ -38,12 +38,11 @@ class Test_new_location:
             assert 200 == result_get.status_code
             print(f"Успешно!!! Проверка локации №{num} для {place_id}")
             print()
-            return True
+            return place_id
         except Exception:
             print(f"Провал!!! Локация №{num} для {place_id} не найдена !!!")
             print()
-            return False
-
+            # return False
 
     # def write_place_id_to_file(self):
     #     """Создаем файл и записываем в него 5шт place_id"""
@@ -52,8 +51,9 @@ class Test_new_location:
 
     def read_place_id_from_file(self):
         """Чтение place_id из файла и вызов метода GET"""
-        with open("list_place_id.txt", "r", encoding='utf-8') as file:
-            [self.check_new_location(num, line) for num, line in enumerate(file.read().split("\n"), 1) if line != '']
+        with open("list_place_id.txt", "r", encoding='utf-8') as file, \
+                open("list_place_id_2.txt", "w", encoding='utf-8') as file_w:
+            [file_w.write(self.check_new_location(num, line)) for num, line in enumerate(file.read().split("\n"), 1) if line != '']
 
     def read_place_id_and_delete(self):
         """Чтение place_id из файла и вызов метода DELETE"""
