@@ -40,6 +40,23 @@ class Test_new_location:
         print()
         return place_id
 
+    def delete_new_location(self, place_id):
+        """Удаление новой локации методом DELETE"""
+        delete_resource = "/maps/api/place/delete/json"
+        delete_url = self.base_url + delete_resource + self.key
+        print(delete_url)
+        json_for_delete_new_location = {"place_id": place_id}
+        result_delete = requests.put(delete_url, json=json_for_delete_new_location)
+        print(result_delete.text)
+        print(f'Статус код ответа : {result_delete.status_code}')
+        assert 200 == result_delete.status_code
+        print("Успешно!!! Удаление новой локации прошло успешно")
+        check_delete = result_delete.json()
+        check_delete_info = check_delete.get("status")
+        print(f'Сообщение : {check_delete_info}')
+        assert check_delete_info == "OK"
+        print("Сообщение верно")
+
     def check_new_location(self, num, place_id):
         """Проверка создания новой локации метод GET"""
         print(f'Проверка №{num} для {place_id}')

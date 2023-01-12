@@ -97,7 +97,7 @@ class Test_new_location:
         json_for_delete_new_location = {"place_id": place_id}
         result_delete = requests.put(delete_url, json=json_for_delete_new_location)
         print(result_delete.text)
-        print(f'Статус код ответа : {result_put.status_code}')
+        print(f'Статус код ответа : {result_delete.status_code}')
         assert 200 == result_delete.status_code
         print("Успешно!!! Удаление новой локации прошло успешно")
         check_delete = result_delete.json()
