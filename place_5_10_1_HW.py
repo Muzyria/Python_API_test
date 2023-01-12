@@ -42,15 +42,9 @@ class Test_new_location:
         except Exception:
             print(f"Провал!!! Локация №{num} для {place_id} не найдена !!!")
             print()
-            # return False
-
-    # def write_place_id_to_file(self):
-    #     """Создаем файл и записываем в него 5шт place_id"""
-    #     with open("list_place_id.txt", "w", encoding='utf-8') as file:
-    #         [file.write(self.create_new_location() + "\n") for _ in range(5)]
 
     def read_place_id_from_file(self):
-        """Чтение place_id из файла и вызов метода GET"""
+        """Чтение place_id из файла и вызов метода GE, если локация есть то записывает place_id в list_place_id_2.txt"""
         with open("list_place_id.txt", "r", encoding='utf-8') as file, \
                 open("list_place_id_2.txt", "w", encoding='utf-8') as file_w:
             [file_w.write(self.check_new_location(num, line)) for num, line in enumerate(file.read().split("\n"), 1) if line != '']
