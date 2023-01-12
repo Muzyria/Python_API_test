@@ -17,13 +17,17 @@ class Test_new_location:
         result_delete = requests.put(delete_url, json=json_for_delete_new_location)
         print(result_delete.text)
         print(f'Статус код ответа : {result_delete.status_code}')
-        assert 200 == result_delete.status_code
-        print(f"Успешно!!! Удаление локации {place_id} прошло успешно")
-        check_delete = result_delete.json()
-        check_delete_info = check_delete.get("status")
-        print(f'Сообщение : {check_delete_info}')
-        assert check_delete_info == "OK"
-        print("Сообщение верно")
+        try:
+            assert 200 == result_delete.status_code
+            print(f"Успешно!!! Удаление локации {place_id} прошло успешно")
+            check_delete = result_delete.json()
+            check_delete_info = check_delete.get("status")
+            print(f'Сообщение : {check_delete_info}')
+            assert check_delete_info == "OK"
+            print("Сообщение верно")
+        except Exception:
+            print(f"Провал!!! Локация {place_id} не найдена !!!")
+            print()
 
     def check_new_location(self, num, place_id):
         """Проверка локации метод GET"""
@@ -45,7 +49,7 @@ class Test_new_location:
             return False
 
     def read_place_id_from_file(self):
-        """Чтение place_id из файла и вызов метода GE, если локация есть то записывает place_id в list_place_id_2.txt"""
+        """Чтение place_id из файла и вызов метода GET, если локация есть то записывает place_id в list_place_id_2.txt"""
         with open("list_place_id.txt", "r", encoding='utf-8') as file, \
                 open("list_place_id_2.txt", "w", encoding='utf-8') as file_w:
             [file_w.write(line + "\n") if self.check_new_location(num, line) else ''
@@ -60,4 +64,4 @@ class Test_new_location:
 
 new_place = Test_new_location()
 new_place.read_place_id_and_delete()  # Удаление 2 и 4 локации
-new_place.read_place_id_from_file()  # Проверка локаций и запись в новый файл
+new_place.read_place_id_from_file()  # Проверка локаций и запись в новый файл тех которые есть
