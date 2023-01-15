@@ -2,7 +2,7 @@ import requests
 
 
 class Swapi:
-    """Работа с новой локацией"""
+    """Работа с """
 
     def __init__(self):
         self.base_url = "https://swapi.dev"  # базовая url
