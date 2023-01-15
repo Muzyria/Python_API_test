@@ -14,7 +14,7 @@ class Swapi:
         return result_get.json()[key]
 
     def write_all_characters(self):
-        """Создаем файл и записываем в него списрк персонажей"""
+        """Создаем файл и записываем в него списрк персонажей без дублей и отсорированых в ексографиеско порядке"""
         with open("list_characters.txt", "w", encoding='utf-8') as file:
             all_people = set()
             list_characters = []
